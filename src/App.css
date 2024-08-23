@@ -14,7 +14,7 @@ body{
   height: 500px;
   width: 400px;
   border: 1px solid black;
-  background: url(../src/assets/images/bg3.png);
+  background: url(images/bg3.png);
   background-size: cover;
   margin: 1rem auto;
   overflow: hidden;

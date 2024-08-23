@@ -161,7 +161,7 @@ const Game = () => {
         <div id="hole" ref={holeRef}></div>
         <div>
         
-          <img src="src/assets/images/angel2.png" alt="" id="bird" ref={birdRef} />
+          <img src="images/angel2.png" alt="" id="bird" ref={birdRef} />
         </div>
       </div>
       <div id="result" ref={resultRef} style={{ display: gameOver ? "block" : "none" }}>
