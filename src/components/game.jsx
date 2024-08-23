@@ -98,36 +98,41 @@ const Game = () => {
   const submitScore = async (scoreValue) => {
     const currentUser = auth.currentUser;
     const username = currentUser?.displayName || "Anonymous";
-  
+    
     try {
-      // Add the new score
-      await addDoc(collection(db, "scores"), {
-        username: username,
-        score: scoreValue,
-        createdAt: serverTimestamp(),
-      });
-      console.log('Score submitted successfully');
-  
-      // Fetch user's scores
+      // Fetch the user's existing scores
       const userScoresQuery = query(
         collection(db, "scores"),
         where("username", "==", username)
       );
-  
+      
       const userScoresSnapshot = await getDocs(userScoresQuery);
       const userScores = userScoresSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-  
-      // Find the highest score
+      
+      // Determine the highest score for the current user
       const highestScore = userScores.length > 0 ? Math.max(...userScores.map(score => score.score)) : 0;
-  
-      // Delete lower scores
-      userScores.forEach(async (userScore) => {
-        if (userScore.score < scoreValue) {
-          await deleteDoc(doc(db, "scores", userScore.id));
-          console.log('Deleted lower score:', userScore.id);
+      
+      if (scoreValue > highestScore) {
+        // Add the new high score
+        await addDoc(collection(db, "scores"), {
+          username: username,
+          score: scoreValue,
+          createdAt: serverTimestamp(),
+        });
+        console.log('New high score submitted successfully');
+        
+        // Delete all scores lower than the new high score
+        for (const userScore of userScores) {
+          if (userScore.score < scoreValue) {
+            await deleteDoc(doc(db, "scores", userScore.id));
+            console.log('Deleted lower score:', userScore.id);
+          }
         }
-      });
-  
+      } else {
+        // Optionally, you can handle scenarios where the score is not a new high score
+        console.log('Score is not a new high score, not added.');
+      }
+      
     } catch (error) {
       console.error('Error submitting or deleting scores:', error);
     }
@@ -155,6 +160,7 @@ const Game = () => {
         <div id="block" ref={blockRef}></div>
         <div id="hole" ref={holeRef}></div>
         <div>
+        
           <img src="src/assets/images/angel2.png" alt="" id="bird" ref={birdRef} />
         </div>
       </div>
