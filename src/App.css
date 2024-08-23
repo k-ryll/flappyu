@@ -1,17 +1,18 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-body{
+body {
   overflow: hidden;
   background-color: pink;
-  background-image: -webkit-linear-gradient(rgb(222, 97, 29),rgb(237, 122, 14),rgb(239, 225, 225));
+  background-image: -webkit-linear-gradient(rgb(222, 97, 29), rgb(237, 122, 14), rgb(239, 225, 225));
   height: 100vh;
 }
 
-#game{
+#game {
   height: 500px;
+  max-width: 100%;
   width: 400px;
   border: 1px solid black;
   background: url(/images/bg3.png);
@@ -20,25 +21,16 @@ body{
   overflow: hidden;
 }
 
-#block{
+#block {
   width: 50px;
   height: 500px;
   background-color: rgb(0, 0, 0);
   position: relative;
   left: 200px;
-  animation: block 2s linear infinite;;
+  animation: block 2s linear infinite;
 }
 
-@keyframes block{
-  0%{
-    left: 400px;
-  }
-  100%{
-    left: -50px;
-  }
-}
-
-#hole{
+#hole {
   height: 150px;
   width: 50px;
   background-color: rgba(255, 140, 0, 0.958);
@@ -48,22 +40,17 @@ body{
   animation: block 2s linear infinite;
 }
 
-#bird{
+#bird {
   position: fixed;
   top: 100px;
   height: 50px;
   width: 50px;
 }
 
-#bird img{
-  height: 50px;
-  width: 50px;
-}
-
-
-#result{
+#result {
+  max-width: 90%;
+  width: auto;
   height: 200px;
-  width: 500px;
   background-color: pink;
   margin: 5rem auto;
   border: 2px solid black;
@@ -72,7 +59,7 @@ body{
   text-align: center;
 }
 
-#button{
+#button {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 11px;
@@ -84,7 +71,7 @@ body{
   cursor: pointer;
 }
 
-#text{
+#text {
   margin-top: 1rem;
   font-size: 2rem;
   color: rgb(0, 0, 0);
