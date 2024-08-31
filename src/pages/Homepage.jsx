@@ -15,10 +15,11 @@ const Homepage = () => {
   };
   
   return (
-    <div>
+    <div className="homepage">
+      <button onClick={handleSignOut} className="signout-btn">Sign Out</button> 
       <Game/>
       
-        <button onClick={handleSignOut}>Sign Out</button>
+        
       
     </div>
   );

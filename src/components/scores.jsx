@@ -42,8 +42,8 @@ const Scores = () => {
   }
 
   return (
-    <div>
-      <h2>High Scores</h2>
+    <div className='leader board'>
+      <h2>Leader Board</h2>
       {scores.length > 0 ? (
         scores.map((score) => (
           <div key={score.id}>

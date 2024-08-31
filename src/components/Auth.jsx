@@ -35,10 +35,12 @@ export const Auth = () => {
         if (auth.currentUser) {
           updateProfile(auth.currentUser, {
             displayName: newUser || "Anonymous", // Use the input value or fallback to "Anonymous"
+           
           })
           .then(() => {
             console.log("Display name set:", auth.currentUser.displayName);
             setError(""); // Clear any previous error message
+            setNewUser("");
           })
           .catch((error) => {
             console.error("Error updating display name:", error);
@@ -55,7 +57,8 @@ export const Auth = () => {
       {isSignedIn ? (
         <Homepage />
       ) : (
-        <form onSubmit={(e) => { e.preventDefault(); signIn(); }}>
+      <div className="login-page">
+      <form className="login" onSubmit={(e) => { e.preventDefault(); signIn(); }}>
           <input 
             type="text" 
             placeholder="Username"
@@ -65,9 +68,11 @@ export const Auth = () => {
               setError(""); // Clear error message when user types
             }}
           />
-          <button type="submit" disabled={!newUser.trim()}>Sign In</button>
+          <button type="submit" disabled={!newUser.trim()}>Start</button>
           {error && <p className="error-message">{error}</p>} {/* Display error message */}
         </form>
+      </div>
+        
       )}
     </div>
   );

@@ -164,7 +164,7 @@ const Game = () => {
           <img src="images/angel2.png" alt="" id="bird" ref={birdRef} />
         </div>
       </div>
-      <div id="result" ref={resultRef} style={{ display: gameOver ? "block" : "none" }}>
+      <div className="result" ref={resultRef} style={{ display: gameOver ? "block" : "none" }}>
         <span id="text" ref={textRef}></span>
         <h1>GAME OVER</h1>
         <button onClick={restartGame}>RESTART</button>
